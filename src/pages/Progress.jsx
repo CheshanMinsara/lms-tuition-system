@@ -98,7 +98,7 @@ export default function Progress({ user }) {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl shadow-lg p-6 text-white card-hover">
+        <div className="group bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl shadow-lg p-6 text-white card-hover">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm font-medium">Total Courses</p>
@@ -106,13 +106,13 @@ export default function Progress({ user }) {
                 {stats.totalCourses}
               </p>
             </div>
-            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg">
+            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg transform-gpu transition-transform group-hover:bounce-in">
               <BookOpen className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-success-500 to-success-700 rounded-xl shadow-lg p-6 text-white card-hover">
+        <div className="group bg-gradient-to-br from-success-500 to-success-700 rounded-xl shadow-lg p-6 text-white card-hover">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-success-100 text-sm font-medium">Completed</p>
@@ -120,13 +120,13 @@ export default function Progress({ user }) {
                 {stats.completedCourses}
               </p>
             </div>
-            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg">
+            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg transform-gpu transition-transform group-hover:bounce-in">
               <Award className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-secondary-500 to-secondary-700 rounded-xl shadow-lg p-6 text-white card-hover">
+        <div className="group bg-gradient-to-br from-secondary-500 to-secondary-700 rounded-xl shadow-lg p-6 text-white card-hover">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-secondary-100 text-sm font-medium">Average Grade</p>
@@ -134,13 +134,13 @@ export default function Progress({ user }) {
                 {stats.averageGrade}%
               </p>
             </div>
-            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg">
+            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg transform-gpu transition-transform group-hover:bounce-in">
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-accent-500 to-accent-700 rounded-xl shadow-lg p-6 text-white card-hover">
+        <div className="group bg-gradient-to-br from-accent-500 to-accent-700 rounded-xl shadow-lg p-6 text-white card-hover">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-accent-100 text-sm font-medium">Lessons Completed</p>
@@ -148,7 +148,7 @@ export default function Progress({ user }) {
                 {stats.completedLessons}
               </p>
             </div>
-            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg">
+            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-lg transform-gpu transition-transform group-hover:bounce-in">
               <Clock className="w-6 h-6 text-white" />
             </div>
           </div>
@@ -231,4 +231,3 @@ export default function Progress({ user }) {
     </div>
   )
 }
-

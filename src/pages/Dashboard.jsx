@@ -110,41 +110,26 @@ export default function Dashboard({ user }) {
   }
 
   return (
-    <div className="space-y-6 fade-in">
+    <div className="space-y-6">
       <div className="overflow-hidden">
         <h1 className="text-4xl font-bold text-gradient min-h-[3rem] flex items-center">
-          <span 
-            className="typing-animation"
-            style={{ animationDelay: '0.2s' }}
-          >
-            Welcome back {userName ? (userName.split(' ')[0] || userName) : 'Student'}
+          <span>
+            Welcome, {userName ? (userName.split(' ')[0] || userName) : 'Student'}! What would you like to learn today?
           </span>
-          <span 
-            className="inline-block animate-wave ml-2 opacity-0" 
-            style={{ 
-              animationDelay: '2s', 
-              animationFillMode: 'forwards' 
-            }}
-          >
+          <span className="inline-block ml-2">
             👋
           </span>
         </h1>
-        <p 
-          className="text-gray-600 dark:text-gray-400 mt-2 text-lg opacity-0"
-          style={{ 
-            animation: 'fadeIn 0.8s ease-in forwards',
-            animationDelay: '2.2s'
-          }}
-        >
-          Continue your learning journey
+        <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">
+          Let's get started.
         </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div 
-          className="rounded-xl shadow-lg p-6 text-white card-hover slide-up"
-          style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)', animationDelay: '0ms' }}
+        <div
+          className="rounded-xl shadow-lg p-6 text-white card-hover"
+          style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)' }}
         >
           <div className="flex items-center justify-between">
             <div>
@@ -159,9 +144,9 @@ export default function Dashboard({ user }) {
           </div>
         </div>
 
-        <div 
-          className="rounded-xl shadow-lg p-6 text-white card-hover slide-up"
-          style={{ background: 'linear-gradient(135deg, #22c55e 0%, #15803d 100%)', animationDelay: '100ms' }}
+        <div
+          className="rounded-xl shadow-lg p-6 text-white card-hover"
+          style={{ background: 'linear-gradient(135deg, #22c55e 0%, #15803d 100%)' }}
         >
           <div className="flex items-center justify-between">
             <div>
@@ -176,9 +161,9 @@ export default function Dashboard({ user }) {
           </div>
         </div>
 
-        <div 
-          className="rounded-xl shadow-lg p-6 text-white card-hover slide-up"
-          style={{ background: 'linear-gradient(135deg, #d946ef 0%, #a21caf 100%)', animationDelay: '200ms' }}
+        <div
+          className="rounded-xl shadow-lg p-6 text-white card-hover"
+          style={{ background: 'linear-gradient(135deg, #d946ef 0%, #a21caf 100%)' }}
         >
           <div className="flex items-center justify-between">
             <div>
@@ -193,9 +178,9 @@ export default function Dashboard({ user }) {
           </div>
         </div>
 
-        <div 
-          className="rounded-xl shadow-lg p-6 text-white card-hover slide-up"
-          style={{ background: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)', animationDelay: '300ms' }}
+        <div
+          className="rounded-xl shadow-lg p-6 text-white card-hover"
+          style={{ background: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)' }}
         >
           <div className="flex items-center justify-between">
             <div>
@@ -231,8 +216,7 @@ export default function Dashboard({ user }) {
                 <Link
                   key={enrollment.id}
                   to={`/courses/${enrollment.courses.id}`}
-                  style={{ animationDelay: `${idx * 100}ms` }}
-                  className="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md slide-up"
+                  className="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
@@ -277,7 +261,7 @@ export default function Dashboard({ user }) {
         {/* Upcoming Events & Announcements */}
         <div className="space-y-6">
           {/* Upcoming Events */}
-          <div className="bg-gradient-to-br from-white/90 via-green-50/30 to-emerald-50/30 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-sm rounded-xl shadow-lg p-6 border-2 border-success-200/50 dark:border-success-700 slide-in-right">
+          <div className="bg-gradient-to-br from-white/90 via-green-50/30 to-emerald-50/30 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-sm rounded-xl shadow-lg p-6 border-2 border-success-200/50 dark:border-success-700">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                 Upcoming
@@ -294,8 +278,7 @@ export default function Dashboard({ user }) {
                 upcomingEvents.map((event, idx) => (
                   <div
                     key={event.id}
-                    style={{ animationDelay: `${idx * 50}ms` }}
-                    className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg transition-all hover:scale-[1.02] hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 slide-up"
+                    className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg transition-all hover:scale-[1.02] hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-700"
                   >
                     <p className="font-medium text-gray-900 dark:text-white text-sm">
                       {event.title}
@@ -315,10 +298,10 @@ export default function Dashboard({ user }) {
           </div>
 
           {/* Announcements */}
-          <div className="bg-gradient-to-br from-white/90 via-orange-50/30 to-amber-50/30 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-sm rounded-xl shadow-lg p-6 border-2 border-accent-200/50 dark:border-accent-700 slide-in-right">
+          <div className="bg-gradient-to-br from-white/90 via-orange-50/30 to-amber-50/30 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-sm rounded-xl shadow-lg p-6 border-2 border-accent-200/50 dark:border-accent-700">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
-                <Bell className="w-5 h-5 mr-2 animate-pulse-slow" />
+                <Bell className="w-5 h-5 mr-2" />
                 Announcements
               </h2>
               <Link
@@ -333,8 +316,7 @@ export default function Dashboard({ user }) {
                 announcements.map((announcement, idx) => (
                   <div
                     key={announcement.id}
-                    style={{ animationDelay: `${idx * 50}ms` }}
-                    className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg transition-all hover:scale-[1.02] hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 slide-up"
+                    className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg transition-all hover:scale-[1.02] hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-700"
                   >
                     <p className="font-medium text-gray-900 dark:text-white text-sm">
                       {announcement.title}
@@ -359,4 +341,3 @@ export default function Dashboard({ user }) {
     </div>
   )
 }
-

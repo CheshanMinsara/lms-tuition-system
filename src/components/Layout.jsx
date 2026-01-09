@@ -114,21 +114,21 @@ export default function Layout({ children, user }) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Mobile Header */}
-      <div className="lg:hidden bg-gradient-to-r from-white/90 via-blue-50/50 to-purple-50/50 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-primary-200/50 dark:border-gray-700">
+      <div className="lg:hidden bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between p-4">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95 text-gray-600 dark:text-white"
           >
             {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-            <h1 className="text-xl font-bold text-gradient">LMS</h1>
+          <h1 className="text-xl font-bold text-gradient">LMS</h1>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95 text-gray-600 dark:text-white"
             >
               {darkMode ? <Sun className="w-5 h-5 transition-transform hover:rotate-180" /> : <Moon className="w-5 h-5 transition-transform hover:rotate-12" />}
             </button>
@@ -141,12 +141,12 @@ export default function Layout({ children, user }) {
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-gradient-to-b from-white via-blue-50/30 to-purple-50/30 dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 backdrop-blur-md shadow-lg lg:shadow-none transition-transform duration-300 ease-in-out border-r border-primary-200/50 dark:border-gray-700`}
+          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 shadow-lg lg:shadow-none transition-transform duration-300 ease-in-out border-r border-gray-200 dark:border-gray-700`}
         >
           <div className="h-full flex flex-col">
             <div className="p-6 border-b border-gray-200 dark:border-gray-700 hidden lg:block">
-          <h1 className="text-2xl font-bold text-gradient">LMS</h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Learning Platform</p>
+              <h1 className="text-2xl font-bold text-gradient">LMS</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Learning Platform</p>
             </div>
 
             <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -158,11 +158,10 @@ export default function Layout({ children, user }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setSidebarOpen(false)}
-                    style={{ animationDelay: `${index * 30}ms` }}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 slide-in-right ${
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                       isActive
                         ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-md scale-105'
-                        : 'text-gray-700 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 dark:text-gray-300 dark:hover:bg-gray-700 hover:scale-105'
+                        : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 hover:scale-105'
                     }`}
                   >
                     <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
@@ -187,7 +186,7 @@ export default function Layout({ children, user }) {
         {/* Main Content */}
         <main className="flex-1 lg:ml-0">
           {/* Top Header */}
-          <header className="bg-gradient-to-r from-white/90 via-blue-50/50 to-purple-50/50 dark:from-gray-800/90 dark:via-gray-800 dark:to-gray-800 backdrop-blur-md shadow-sm sticky top-0 z-20 hidden lg:block border-b border-primary-200/50 dark:border-gray-700">
+          <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-20 hidden lg:block border-b border-gray-200 dark:border-gray-700">
             <div className="px-6 py-4 flex items-center justify-between">
               <form onSubmit={handleSearch} className="flex-1 max-w-md">
                 <div className="relative">
@@ -197,21 +196,21 @@ export default function Layout({ children, user }) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search courses, lessons..."
-                    className="w-full pl-10 pr-4 py-2.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 backdrop-blur-sm border-2 border-primary-300 dark:border-primary-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus:from-primary-100 focus:to-purple-100 dark:focus:from-primary-800 dark:focus:to-purple-800 dark:text-white shadow-md transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:text-white shadow-sm transition-all"
                   />
                 </div>
               </form>
 
               <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95"
-              >
-                {darkMode ? <Sun className="w-5 h-5 transition-transform hover:rotate-180" /> : <Moon className="w-5 h-5 transition-transform hover:rotate-12" />}
-              </button>
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110 active:scale-95 text-gray-600 dark:text-white"
+                >
+                  {darkMode ? <Sun className="w-5 h-5 transition-transform hover:rotate-180" /> : <Moon className="w-5 h-5 transition-transform hover:rotate-12" />}
+                </button>
 
                 <div className="relative">
-                  <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 relative">
+                  <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 relative text-gray-600 dark:text-white">
                     <Bell className="w-5 h-5" />
                     {notifications.length > 0 && (
                       <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -246,4 +245,3 @@ export default function Layout({ children, user }) {
     </div>
   )
 }
-
