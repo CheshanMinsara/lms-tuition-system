@@ -110,7 +110,7 @@ export default function Messages({ user }) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-4xl font-bold text-white">Messages 💬</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Messages 💬</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">Communicate with your instructors</p>
       </div>
 
@@ -127,8 +127,8 @@ export default function Messages({ user }) {
                   key={conversation.id}
                   onClick={() => setSelectedConversation(conversation)}
                   className={`w-full p-4 text-left border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition ${selectedConversation?.id === conversation.id
-                      ? 'bg-primary-50 dark:bg-primary-900/20'
-                      : ''
+                    ? 'bg-primary-50 dark:bg-primary-900/20'
+                    : ''
                     }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -187,8 +187,8 @@ export default function Messages({ user }) {
                       >
                         <div
                           className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105 ${isOwn
-                              ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                            ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
                             }`}
                         >
                           <p>{message.message}</p>

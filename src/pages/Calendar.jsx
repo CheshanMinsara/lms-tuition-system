@@ -219,7 +219,7 @@ export default function Calendar({ user }) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-4xl font-bold text-white">Calendar 📅</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Calendar 📅</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">View your classes and deadlines</p>
       </div>
 
@@ -296,12 +296,12 @@ export default function Calendar({ user }) {
                     }}
                     style={{ animationDelay: `${index * 10}ms` }}
                     className={`p-2 rounded-lg text-center min-h-[60px] transition-all duration-200 relative fade-in hover:scale-105 active:scale-95 ${isSelected
-                        ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-lg ring-2 ring-primary-300'
-                        : isToday
-                          ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-primary-500 font-semibold hover:border-primary-600'
-                          : isCurrentMonth
-                            ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:shadow-md'
-                            : 'text-gray-400 dark:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                      ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-lg ring-2 ring-primary-300'
+                      : isToday
+                        ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-primary-500 font-semibold hover:border-primary-600'
+                        : isCurrentMonth
+                          ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:shadow-md'
+                          : 'text-gray-400 dark:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                       }`}
                   >
                     <div className={`text-sm ${isSelected ? 'font-bold' : 'font-medium'}`}>
@@ -313,9 +313,9 @@ export default function Calendar({ user }) {
                           <div
                             key={idx}
                             className={`w-2 h-2 rounded-full transition-all hover:scale-150 ${isSelected ? 'bg-white' :
-                                event.type === 'exam' ? 'bg-red-500' :
-                                  event.type === 'assignment' ? 'bg-orange-500' :
-                                    isCurrentMonth ? 'bg-primary-600' : 'bg-gray-400'
+                              event.type === 'exam' ? 'bg-red-500' :
+                                event.type === 'assignment' ? 'bg-orange-500' :
+                                  isCurrentMonth ? 'bg-primary-600' : 'bg-gray-400'
                               }`}
                             title={event.title}
                           ></div>
