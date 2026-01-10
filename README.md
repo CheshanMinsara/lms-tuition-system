@@ -2,6 +2,11 @@
 
 A modern, mobile-friendly Learning Management System designed for tuition centers and private tutoring, built with React and Supabase.
 
+## Deployment
+
+### Netlify
+This project includes a `public/_redirects` file to handle client-side routing on Netlify. This prevents "Page Not Found" errors when refreshing non-root pages.
+
 ## Features
 
 ### 🔐 Authentication & User Management
