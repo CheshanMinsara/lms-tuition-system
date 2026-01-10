@@ -39,7 +39,7 @@ export default function Calendar({ user }) {
       // Get the date range for the calendar view (including previous/next month overflow)
       const calendarStart = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 0 })
       const calendarEnd = endOfWeek(endOfMonth(currentDate), { weekStartsOn: 0 })
-      
+
       // Format dates for query (YYYY-MM-DD)
       const startDateStr = format(calendarStart, 'yyyy-MM-dd')
       const endDateStr = format(calendarEnd, 'yyyy-MM-dd')
@@ -61,7 +61,7 @@ export default function Calendar({ user }) {
       }
 
       console.log(`Fetched ${allEvents?.length || 0} total events for user ${user.id}`)
-      
+
       // Filter events that fall within the visible calendar range
       // This includes overflow days from previous/next month
       const filteredEvents = (allEvents || []).filter(event => {
@@ -69,11 +69,11 @@ export default function Calendar({ user }) {
           console.warn('Event missing start_date:', event)
           return false
         }
-        
+
         try {
           // Parse the event date - handle ISO strings, date strings, etc.
           let eventDate = new Date(event.start_date)
-          
+
           // If date parsing fails, try to parse as string
           if (isNaN(eventDate.getTime())) {
             // Try parsing as YYYY-MM-DD format
@@ -85,24 +85,24 @@ export default function Calendar({ user }) {
               return false
             }
           }
-          
+
           // Check if date is valid after parsing
           if (isNaN(eventDate.getTime())) {
             console.warn('Invalid date for event:', event.start_date, event)
             return false
           }
-          
+
           // Format to YYYY-MM-DD for comparison (ignore time)
           const eventDateStr = format(eventDate, 'yyyy-MM-dd')
-          
+
           // Check if event is within the visible calendar range
           // calendarStart and calendarEnd include overflow days from adjacent months
           const isInRange = eventDateStr >= startDateStr && eventDateStr <= endDateStr
-          
+
           if (!isInRange) {
             console.log(`Event "${event.title}" (${eventDateStr}) is outside visible range (${startDateStr} to ${endDateStr})`)
           }
-          
+
           return isInRange
         } catch (err) {
           console.error('Error processing event date:', event, err)
@@ -116,12 +116,12 @@ export default function Calendar({ user }) {
         date: e.start_date,
         formatted: format(new Date(e.start_date), 'yyyy-MM-dd')
       })))
-      
+
       setEvents(filteredEvents)
 
       // Also fetch events from assessments (assignments and exams)
       const { data: { user: currentUser } } = await supabase.auth.getUser()
-      
+
       if (currentUser) {
         // Get enrolled courses
         const { data: enrollments } = await supabase
@@ -209,7 +209,7 @@ export default function Calendar({ user }) {
     setCurrentDate(newDate)
     console.log('Navigated to next month:', format(newDate, 'MMMM yyyy'))
   }
-  
+
   const goToToday = () => {
     setCalendarKey(prev => prev + 1)
     setCurrentDate(new Date())
@@ -219,7 +219,7 @@ export default function Calendar({ user }) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-4xl font-bold text-gradient">Calendar 📅</h1>
+        <h1 className="text-4xl font-bold text-white">Calendar 📅</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">View your classes and deadlines</p>
       </div>
 
@@ -271,21 +271,21 @@ export default function Calendar({ user }) {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
             </div>
           ) : (
-          <div key={calendarKey} className="grid grid-cols-7 gap-2 fade-in">
-            {daysInMonth.map((day, index) => {
-              // Format day to YYYY-MM-DD for comparison
-              const dayStr = format(day, 'yyyy-MM-dd')
-              
-              const dayEvents = events.filter((event) => {
-                if (!event.start_date) return false
-                const eventDate = new Date(event.start_date)
-                const eventStr = format(eventDate, 'yyyy-MM-dd')
-                return eventStr === dayStr
-              })
-              
-              const isSelected = isSameDay(day, selectedDate)
-              const isCurrentMonth = isSameMonth(day, currentDate)
-              const isToday = isSameDay(day, new Date())
+            <div key={calendarKey} className="grid grid-cols-7 gap-2 fade-in">
+              {daysInMonth.map((day, index) => {
+                // Format day to YYYY-MM-DD for comparison
+                const dayStr = format(day, 'yyyy-MM-dd')
+
+                const dayEvents = events.filter((event) => {
+                  if (!event.start_date) return false
+                  const eventDate = new Date(event.start_date)
+                  const eventStr = format(eventDate, 'yyyy-MM-dd')
+                  return eventStr === dayStr
+                })
+
+                const isSelected = isSameDay(day, selectedDate)
+                const isCurrentMonth = isSameMonth(day, currentDate)
+                const isToday = isSameDay(day, new Date())
 
                 return (
                   <button
@@ -295,44 +295,42 @@ export default function Calendar({ user }) {
                       console.log('Selected date:', format(day, 'yyyy-MM-dd'), 'Events:', dayEvents)
                     }}
                     style={{ animationDelay: `${index * 10}ms` }}
-                    className={`p-2 rounded-lg text-center min-h-[60px] transition-all duration-200 relative fade-in hover:scale-105 active:scale-95 ${
-                    isSelected
-                      ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-lg ring-2 ring-primary-300'
-                      : isToday
-                      ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-primary-500 font-semibold hover:border-primary-600'
-                      : isCurrentMonth
-                      ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:shadow-md'
-                      : 'text-gray-400 dark:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  <div className={`text-sm ${isSelected ? 'font-bold' : 'font-medium'}`}>
-                    {format(day, 'd')}
-                  </div>
-                  {dayEvents.length > 0 && (
-                    <div className="flex justify-center mt-1 space-x-1">
-                      {dayEvents.slice(0, 3).map((event, idx) => (
-                        <div
-                          key={idx}
-                          className={`w-2 h-2 rounded-full transition-all hover:scale-150 ${
-                            isSelected ? 'bg-white' : 
-                            event.type === 'exam' ? 'bg-red-500' :
-                            event.type === 'assignment' ? 'bg-orange-500' :
-                            isCurrentMonth ? 'bg-primary-600' : 'bg-gray-400'
-                          }`}
-                          title={event.title}
-                        ></div>
-                      ))}
-                      {dayEvents.length > 3 && (
-                        <span className={`text-xs animate-pulse ${isSelected ? 'text-white' : 'text-gray-500'}`}>
-                          +{dayEvents.length - 3}
-                        </span>
-                      )}
+                    className={`p-2 rounded-lg text-center min-h-[60px] transition-all duration-200 relative fade-in hover:scale-105 active:scale-95 ${isSelected
+                        ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-lg ring-2 ring-primary-300'
+                        : isToday
+                          ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-primary-500 font-semibold hover:border-primary-600'
+                          : isCurrentMonth
+                            ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:shadow-md'
+                            : 'text-gray-400 dark:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                      }`}
+                  >
+                    <div className={`text-sm ${isSelected ? 'font-bold' : 'font-medium'}`}>
+                      {format(day, 'd')}
                     </div>
-                  )}
-                </button>
-              )
-            })}
-          </div>
+                    {dayEvents.length > 0 && (
+                      <div className="flex justify-center mt-1 space-x-1">
+                        {dayEvents.slice(0, 3).map((event, idx) => (
+                          <div
+                            key={idx}
+                            className={`w-2 h-2 rounded-full transition-all hover:scale-150 ${isSelected ? 'bg-white' :
+                                event.type === 'exam' ? 'bg-red-500' :
+                                  event.type === 'assignment' ? 'bg-orange-500' :
+                                    isCurrentMonth ? 'bg-primary-600' : 'bg-gray-400'
+                              }`}
+                            title={event.title}
+                          ></div>
+                        ))}
+                        {dayEvents.length > 3 && (
+                          <span className={`text-xs animate-pulse ${isSelected ? 'text-white' : 'text-gray-500'}`}>
+                            +{dayEvents.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
           )}
         </div>
 
@@ -346,12 +344,12 @@ export default function Calendar({ user }) {
             {selectedEvents.length > 0 ? (
               selectedEvents.map((event, idx) => {
                 const Icon = getEventTypeIcon(event.type)
-                const eventColor = event.type === 'exam' 
-                  ? 'from-red-500 to-red-600' 
-                  : event.type === 'assignment' 
-                  ? 'from-orange-500 to-orange-600'
-                  : 'from-primary-500 to-primary-600'
-                
+                const eventColor = event.type === 'exam'
+                  ? 'from-red-500 to-red-600'
+                  : event.type === 'assignment'
+                    ? 'from-orange-500 to-orange-600'
+                    : 'from-primary-500 to-primary-600'
+
                 return (
                   <div
                     key={event.id}

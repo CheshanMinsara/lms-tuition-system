@@ -123,7 +123,7 @@ export default function Courses() {
     <div className="space-y-6 fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-gradient">
+          <h1 className="text-4xl font-bold text-white">
             Course Catalog 📚
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">

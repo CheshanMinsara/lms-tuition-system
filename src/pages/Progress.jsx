@@ -92,7 +92,7 @@ export default function Progress({ user }) {
   return (
     <div className="space-y-6 fade-in">
       <div>
-        <h1 className="text-4xl font-bold text-gradient">Progress 📊</h1>
+        <h1 className="text-4xl font-bold text-white">Progress 📊</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">Track your learning journey</p>
       </div>
 

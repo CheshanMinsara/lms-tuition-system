@@ -18,13 +18,14 @@ import {
   Sun,
   LogOut,
   Search,
+  GraduationCap,
 } from 'lucide-react'
 
 export default function Layout({ children, user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem('darkMode') !== null 
-      ? localStorage.getItem('darkMode') === 'true' 
+    localStorage.getItem('darkMode') !== null
+      ? localStorage.getItem('darkMode') === 'true'
       : true // Default to dark mode
   )
   const [notifications, setNotifications] = useState([])
@@ -124,7 +125,14 @@ export default function Layout({ children, user }) {
           >
             {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <h1 className="text-xl font-bold text-gradient">LMS</h1>
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-lg text-white shadow-lg">
+              <GraduationCap className="w-5 h-5" />
+            </div>
+            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
+              Nexus
+            </h1>
+          </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -139,14 +147,24 @@ export default function Layout({ children, user }) {
       <div className="flex">
         {/* Sidebar */}
         <aside
-          className={`${
-            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 shadow-lg lg:shadow-none transition-transform duration-300 ease-in-out border-r border-gray-200 dark:border-gray-700`}
+          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 shadow-lg lg:shadow-none transition-transform duration-300 ease-in-out border-r border-gray-200 dark:border-gray-700`}
         >
           <div className="h-full flex flex-col">
             <div className="p-6 border-b border-gray-200 dark:border-gray-700 hidden lg:block">
-              <h1 className="text-2xl font-bold text-gradient">LMS</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Learning Platform</p>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="p-2 bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-xl text-white shadow-lg transform transition-transform hover:scale-105 duration-300">
+                  <GraduationCap className="w-8 h-8" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400 tracking-tight">
+                    Nexus
+                  </h1>
+                </div>
+              </div>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider pl-1 font-mono">
+                Tuition System
+              </p>
             </div>
 
             <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -158,11 +176,10 @@ export default function Layout({ children, user }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                      isActive
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
                         ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-md scale-105'
                         : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 hover:scale-105'
-                    }`}
+                      }`}
                   >
                     <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
                     <span className="font-medium">{item.label}</span>

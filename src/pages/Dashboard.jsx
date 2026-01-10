@@ -112,11 +112,11 @@ export default function Dashboard({ user }) {
   return (
     <div className="space-y-6">
       <div className="overflow-hidden">
-        <h1 className="text-4xl font-bold text-gradient min-h-[3rem] flex items-center">
-          <span>
-            Welcome, {userName ? (userName.split(' ')[0] || userName) : 'Student'}! What would you like to learn today?
+        <h1 className="text-4xl font-bold text-slate-900 dark:text-white min-h-[3rem] flex items-center flex-wrap">
+          <span className="typing-animation">
+            Welcome, {userName ? (userName.split(' ')[0] || userName) : 'Student'}!
           </span>
-          <span className="inline-block ml-2">
+          <span className="animate-wave ml-2 text-4xl">
             👋
           </span>
         </h1>

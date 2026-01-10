@@ -164,7 +164,7 @@ export default function Profile({ user }) {
   return (
     <div className="space-y-6 fade-in">
       <div>
-        <h1 className="text-4xl font-bold text-gradient">Profile 👤</h1>
+        <h1 className="text-4xl font-bold text-white">Profile 👤</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">Manage your account settings</p>
       </div>
 
